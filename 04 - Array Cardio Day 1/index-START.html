@@ -37,18 +37,28 @@
     ];
     
     // Array.prototype.filter()
-    // 1. Filter the list of inventors for those who were born in the 1500's
+    // 1. Filter the list of inventors for those who were born in the 1500'
+    const born1500s = inventors.filter(item => { return (item.year > 1499 && item.year < 1600)});
+    //console.log(born1500s);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const inventorsName = inventors.map(item => item.first + " " + item.last, 0);
+    // console.log(inventorsName);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const inventorsTimeline = inventors.sort((a, b) => a.year - b.year);
+    //console.log(inventorsTimeline);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const sumYears = inventors.reduce((total, value) => total += (+value.passed - +value.year), 0);
+    //console.log(sumYears);
 
     // 5. Sort the inventors by years lived
+    const inventorsLifespan = inventors.sort((a, b) => (+a.passed - +a.year) - (+b.passed - +b.year));
+    //console.log(inventorsLifespan); 
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -56,10 +66,27 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alphabeticPeople = people.sort(function (a, b) {
+      const aSecondName = a.split(", ")[0];
+      const bSecondName = b.split(", ")[0];
+
+      return (aSecondName > bSecondName) ? 1 : -1; 
+    })
+    console.log(alphabeticPeople);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const sum = data.reduce((total, value) => {
+    if (!total.includes(value)) {
+        total.push(value);
+        total.push(1);
+    } else {
+        total[total.indexOf(value) +1]++;
+    }
+    return total;
+    }, [])
+    //console.log(sum);
 
   </script>
 </body>
